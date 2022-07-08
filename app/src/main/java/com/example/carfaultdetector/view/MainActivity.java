@@ -1,30 +1,15 @@
 package com.example.carfaultdetector.view;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.carfaultdetector.R;
-import com.example.carfaultdetector.ViewModel.LoginViewModel;
-import com.example.carfaultdetector.model.RetrofitInterface;
-import com.example.carfaultdetector.model.LoginResult;
-
-import java.util.HashMap;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import com.example.carfaultdetector.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,15 +17,17 @@ public class MainActivity extends AppCompatActivity {
   //  private RetrofitInterface retrofitInterface;
     //private String BaseURL = "http://10.0.2.2:3000";
 
-    Button button;
+    Button loginButton;
+    Button signUpButton;
     TextView textView;
-
+    User user = new User(null, null);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        loginButton();
-        LoginResult loginResult = new LoginResult(null, null);
+        setLoginButton();
+        setSignUpButton();
+
 
 
 
@@ -73,21 +60,37 @@ public class MainActivity extends AppCompatActivity {
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
         if(b!=null){
-            System.out.println("Ekstrasy: " + b.get("email"));
-            textView.setText("Witaj " + b.get("name"));
+            //System.out.println("Ekstrasy: " + b.get("email"));
+            //textView.setText("Witaj " + b.get("name"));
+            user.setName(b.get("name").toString());
+            user.setEmail(b.get("email").toString());
+            System.out.println("User: " + user.getEmail() + " " + user.getName());
+            textView.setText("Witaj " + user.getName());
         }
         else{
             System.out.println("nie ma ekstrasow");
+            System.out.println("User: " + user.getEmail() + " " + user.getName());
         }
 
         //textView
 
     }
 
-    private void loginButton(){
+    private void setSignUpButton(){
+        signUpButton = findViewById(R.id.signup);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setLoginButton(){
         textView = findViewById(R.id.logintextview);
-        button = findViewById(R.id.login);
-        button.setOnClickListener(new View.OnClickListener() {
+        loginButton = findViewById(R.id.login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);

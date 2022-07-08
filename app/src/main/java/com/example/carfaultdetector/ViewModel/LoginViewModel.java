@@ -1,19 +1,13 @@
 package com.example.carfaultdetector.ViewModel;
 
-import android.os.SystemClock;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.carfaultdetector.model.RetrofitInterface;
 
-import com.example.carfaultdetector.model.LoginResult;
-import com.example.carfaultdetector.view.LoginActivity;
+import com.example.carfaultdetector.model.User;
 
 import java.util.HashMap;
 
@@ -30,24 +24,24 @@ public class LoginViewModel extends ViewModel {
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
     private String BaseURL = "http://10.0.2.2:3000";
-    private static LoginResult result;
+    private static User result;
     //LiveData<String> liveData;
     HashMap<String, String> map;
     public MutableLiveData<Boolean> mutableLiveData = new MutableLiveData<>();
 
-    private LoginResult getLogin(HashMap<String, String> map){
+    private User getLogin(HashMap<String, String> map){
 
         retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create())
                 .build();
         retrofitInterface = retrofit.create(RetrofitInterface.class);
         // System.out.println("Wchodzę do getLogin");
         //Log.d("mapa", map.get("email") + " " + map.get("password"));
-        Call<LoginResult> call = retrofitInterface.executeLogin(map);
+        Call<User> call = retrofitInterface.executeLogin(map);
 
         //System.out.println("Wykonany call");
-        call.enqueue(new Callback<LoginResult>() {
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if(response.code()==200){
                     Log.d("ok", "kod 200");
                     result = response.body();
@@ -63,7 +57,7 @@ public class LoginViewModel extends ViewModel {
             }
 
             @Override
-            public void onFailure(Call<LoginResult> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Log.d("blad", "Failure");
                 result = null;
                 mutableLiveData.setValue(false);
@@ -74,7 +68,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     public void getLoginName(HashMap<String, String> map){
-        LoginResult login = getLogin(map);
+        User login = getLogin(map);
     }
 
     public String getEmail(){
