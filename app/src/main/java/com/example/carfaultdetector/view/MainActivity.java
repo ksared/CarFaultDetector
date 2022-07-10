@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.carfaultdetector.R;
+import com.example.carfaultdetector.model.Global;
 import com.example.carfaultdetector.model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button loginButton;
     Button signUpButton;
+    Button workShopButton;
     TextView textView;
     User user = new User(null, null);
     @Override
@@ -27,31 +29,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setLoginButton();
         setSignUpButton();
+        setWorkShopButton();
 
-
-
-
-        //loginViewModel.mu
-/*
-        retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create())
-                .build();
-        retrofitInterface = retrofit.create(RetrofitInterface.class);
-
-
-        findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleLoginDialog();
-            }
-        });
-
-        findViewById(R.id.signup).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                handleSignupDialog();
-            }
-        });
-*/
     }
 
     @Override
@@ -59,21 +38,38 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         Intent iin= getIntent();
         Bundle b = iin.getExtras();
-        if(b!=null){
+        if(Global.userName == null){
+            textView.setText("Niezalogowano");
+
+        }
+        else{
+            textView.setText("Witaj " + Global.userName);
+        }
+   /*     if(b!=null){
             //System.out.println("Ekstrasy: " + b.get("email"));
             //textView.setText("Witaj " + b.get("name"));
             user.setName(b.get("name").toString());
             user.setEmail(b.get("email").toString());
             System.out.println("User: " + user.getEmail() + " " + user.getName());
-            textView.setText("Witaj " + user.getName());
+            textView.setText("Witaj " + Global.userName);
         }
         else{
             System.out.println("nie ma ekstrasow");
             System.out.println("User: " + user.getEmail() + " " + user.getName());
         }
+*/
 
-        //textView
+    }
 
+    private void setWorkShopButton(){
+        workShopButton = findViewById(R.id.workshop);
+        workShopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WorkshopsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setSignUpButton(){

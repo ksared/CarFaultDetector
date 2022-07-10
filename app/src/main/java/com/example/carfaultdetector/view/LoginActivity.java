@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.carfaultdetector.R;
 import com.example.carfaultdetector.ViewModel.LoginViewModel;
+import com.example.carfaultdetector.model.Global;
 import com.example.carfaultdetector.model.User;
 
 import java.util.HashMap;
@@ -80,13 +81,17 @@ public class LoginActivity extends AppCompatActivity {
                 if(s==true){
                     System.out.println("Login udany");
 
-                    String email = loginViewModel.getName();
-                    String name = loginViewModel.getEmail();
+                    String name = loginViewModel.getName();
+                    String email = loginViewModel.getEmail();
+                    String password = passwordEdit.getText().toString();
 
                     System.out.println("email: " + email + " name: " + name);
 
                     user.setEmail(email);
                     user.setName(name);
+                    Global.userName = name;
+                    Global.email = email;
+                    Global.password = password;
                     //zamiast dawac notyfikacje to zmieniam ekran
                     //builder.setTitle("Login successful");
                     //builder.setMessage(loginResult.getEmail() + "  " + loginResult.getName());

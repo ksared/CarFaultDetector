@@ -1,6 +1,8 @@
 package com.example.carfaultdetector.model;
 
-public class User {
+import android.app.Application;
+
+public class User extends Application {
     public User(String name, String email) {
         this.name = name;
         this.email = email;
