@@ -12,4 +12,7 @@ public interface RetrofitInterface {
 
     @POST("/signup")
     Call<Void> executeSignup (@Body HashMap<String, String> map);
+
+    @POST("/addworkshop")
+    Call<Void> executeAddWorkshop (@Body HashMap<String, String> map);
 }
