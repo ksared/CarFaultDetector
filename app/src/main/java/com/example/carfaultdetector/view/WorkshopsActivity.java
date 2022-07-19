@@ -2,6 +2,7 @@ package com.example.carfaultdetector.view;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.carfaultdetector.R;
+import com.example.carfaultdetector.ViewModel.WorkshopsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
@@ -25,7 +27,12 @@ public class WorkshopsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workshops);
+
+
+
         addListen();
+
+
     }
 
     public void addListen(){
@@ -49,16 +56,19 @@ public class WorkshopsActivity extends AppCompatActivity {
         alertDialogBuilder.setView(contactPopupView);
         alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-
+        WorkshopsViewModel workshopsViewModel = new ViewModelProvider(this).get(WorkshopsViewModel.class);
         addWorkshopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 HashMap<String, String> map = new HashMap<>();
 
-                map.put("workshopName", nameEditText.getText().toString());
-                map.put("workshopAddress", addressEditText.getText().toString());
+                map.put("name", nameEditText.getText().toString());
+                map.put("address", addressEditText.getText().toString());
 
                 Log.d("Workshop details: ", nameEditText.getText().toString() + "  " + addressEditText.getText().toString());
+
+                int result = workshopsViewModel.addWorkshop(map);
+                System.out.println("Result: " + result);
                 alertDialog.dismiss();
             }
         });
