@@ -28,6 +28,8 @@ public class WorkshopsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workshops);
 
+        WorkshopsViewModel workshopsViewModel = new ViewModelProvider(this).get(WorkshopsViewModel.class);
+        workshopsViewModel.getWorkshops();
 
 
         addListen();

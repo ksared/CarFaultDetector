@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface RetrofitInterface {
@@ -15,4 +16,7 @@ public interface RetrofitInterface {
 
     @POST("/addworkshop")
     Call<Void> executeAddWorkshop (@Body HashMap<String, String> map);
+
+    @GET("/getAllWorkshops")
+    Call<Workshop> executeGetAllWorkshops();
 }

@@ -61,4 +61,22 @@ public class WorkshopsViewModel extends ViewModel {
         return httpCode;
     }
 
+    public void getWorkshops(){
+        retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create()).build();
+        retrofitInterface = retrofit.create(RetrofitInterface.class);
+        Call<Workshop> call = retrofitInterface.executeGetAllWorkshops();
+
+        call.enqueue(new Callback<Workshop>() {
+            @Override
+            public void onResponse(Call<Workshop> call, Response<Workshop> response) {
+                System.out.println("Udalo sie pobrac warsztaty " + response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Workshop> call, Throwable t) {
+                System.out.println("Nie udalo sie " + t);
+            }
+        });
+    }
+
 }
