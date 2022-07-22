@@ -1,6 +1,11 @@
 package com.example.carfaultdetector.model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -18,5 +23,5 @@ public interface RetrofitInterface {
     Call<Void> executeAddWorkshop (@Body HashMap<String, String> map);
 
     @GET("/getAllWorkshops")
-    Call<Workshop> executeGetAllWorkshops();
+    Call<Object> executeGetAllWorkshops();
 }
