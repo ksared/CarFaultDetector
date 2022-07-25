@@ -5,6 +5,16 @@ public class Workshop {
     private String address;
     private double rate;
 
+    public Workshop(){
+
+    }
+
+    public Workshop(String name, String address, double rate){
+        this.name = name;
+        this.address = address;
+        this.rate = rate;
+    }
+
     public String getName() {
         return name;
     }

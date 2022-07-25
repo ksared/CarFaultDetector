@@ -31,6 +31,7 @@ public class WorkshopsViewModel extends ViewModel {
     private String BaseURL = "http://10.0.2.2:3000";
     HashMap<String, String> map;
     public MutableLiveData<Integer> mutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<Workshop[]> mutableLiveData2 = new MutableLiveData<>();
     private int httpCode;
     private Workshop[] workshops;
     //public static Workshop workshop;
@@ -107,6 +108,7 @@ public class WorkshopsViewModel extends ViewModel {
                     System.out.println("Name: " + workshops[i].getName() + " address: " + workshops[i].getAddress()
                     + " rate: " + workshops[i].getRate());
                 }
+                mutableLiveData2.setValue(workshops);
 
             }
             @Override
