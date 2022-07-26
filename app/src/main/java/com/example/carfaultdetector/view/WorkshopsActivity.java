@@ -54,16 +54,8 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
                 WorkshopAdapter workshopAdapter = new WorkshopAdapter(getApplicationContext(), worksh);
                 workshopAdapter.setButtonListener(WorkshopsActivity.this);
                 workshopsListView.setAdapter(workshopAdapter);
-
-
             }
         });
-
-
-
-
-
-
 
     }
 
@@ -105,7 +97,7 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
             }
         });
     }
-    public void createRateContactDialog(){
+    public void createRateContactDialog(Workshop workshop){
         alertDialogBuilder = new AlertDialog.Builder(this);
         final View ratePopupView = getLayoutInflater().inflate(R.layout.rate_workshop_popup, null);
         rate5 = ratePopupView.findViewById(R.id.ocena5);
@@ -121,31 +113,36 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
         rate5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Ocena 5");
+                System.out.println("Ocena 5 warsztat: " + workshop.getName());
+                workshopsViewModel.rateWorkshop(workshop, "5");
             }
         });
         rate4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                System.out.println("Ocena 4 warsztat: " + workshop.getName());
+                workshopsViewModel.rateWorkshop(workshop, "4");
             }
         });
         rate3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                System.out.println("Ocena 3 warsztat: " + workshop.getName());
+                workshopsViewModel.rateWorkshop(workshop, "3");
             }
         });
         rate2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                System.out.println("Ocena 2 warsztat: " + workshop.getName());
+                workshopsViewModel.rateWorkshop(workshop, "2");
             }
         });
         rate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                System.out.println("Ocena 1 warsztat: " + workshop.getName());
+                workshopsViewModel.rateWorkshop(workshop, "1");
             }
         });
 
@@ -156,6 +153,6 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
     @Override
     public void onButtonClickListener(int position, Object value) {
         System.out.println("Kliknales przycisk nr " + position);
-        createRateContactDialog();
+        createRateContactDialog((Workshop) value);
     }
 }

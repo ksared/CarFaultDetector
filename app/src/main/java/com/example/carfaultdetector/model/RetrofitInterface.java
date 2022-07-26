@@ -24,4 +24,7 @@ public interface RetrofitInterface {
 
     @GET("/getAllWorkshops")
     Call<Object> executeGetAllWorkshops();
+
+    @POST("/rateWorkshop")
+    Call<Void> rateWorkshop(@Body HashMap<String, String> map);
 }

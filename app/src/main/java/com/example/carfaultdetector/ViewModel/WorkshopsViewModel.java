@@ -72,6 +72,27 @@ public class WorkshopsViewModel extends ViewModel {
         return httpCode;
     }
 
+    public void rateWorkshop(Workshop workshop, String rate){
+        retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create()).build();
+        retrofitInterface = retrofit.create(RetrofitInterface.class);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", workshop.getName());
+        map.put("rate", rate);
+
+        Call<Void> call = retrofitInterface.rateWorkshop(map);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println("Oceniono");
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println("Blad");
+            }
+        });
+    }
+
     public void getWorkshops(){
         retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create()).build();
         retrofitInterface = retrofit.create(RetrofitInterface.class);
