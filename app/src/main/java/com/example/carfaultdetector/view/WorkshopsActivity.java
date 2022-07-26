@@ -8,19 +8,21 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.carfaultdetector.R;
 import com.example.carfaultdetector.ViewModel.WorkshopsViewModel;
+import com.example.carfaultdetector.adapter.ButtonListener;
 import com.example.carfaultdetector.adapter.WorkshopAdapter;
 import com.example.carfaultdetector.model.Workshop;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
 
-public class WorkshopsActivity extends AppCompatActivity {
+public class WorkshopsActivity extends AppCompatActivity implements ButtonListener {
 
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog alertDialog;
@@ -29,32 +31,35 @@ public class WorkshopsActivity extends AppCompatActivity {
     private FloatingActionButton viewDialogButton;
     private ListView workshopsListView;
     private Workshop workshops;
+
+    private Button rate5;
+    private Button rate4;
+    private Button rate3;
+    private Button rate2;
+    private Button rate1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workshops);
+        workshopsListView = findViewById(R.id.workshopsListView);
 
         WorkshopsViewModel workshopsViewModel = new ViewModelProvider(this).get(WorkshopsViewModel.class);
         workshopsViewModel.getWorkshops();
-
-        Workshop testWorkshop1 = new Workshop("pierwszy", "Pierwszy adres", 3);
-        Workshop testWorkshop2 = new Workshop("drugi", "Drugi adres", 3.9);
-        //Workshop[] workshops = new Workshop[2];
-        //workshops[0] = testWorkshop1;
-        //workshops[1] = testWorkshop2;
-
-
-
         addListen();
 
         workshopsViewModel.mutableLiveData2.observe(this, new Observer<Workshop[]>() {
             @Override
             public void onChanged(Workshop[] worksh) {
-                workshopsListView = findViewById(R.id.workshopsListView);
+
                 WorkshopAdapter workshopAdapter = new WorkshopAdapter(getApplicationContext(), worksh);
+                workshopAdapter.setButtonListener(WorkshopsActivity.this);
                 workshopsListView.setAdapter(workshopAdapter);
+
+
             }
         });
+
+
 
 
 
@@ -100,5 +105,57 @@ public class WorkshopsActivity extends AppCompatActivity {
             }
         });
     }
+    public void createRateContactDialog(){
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        final View ratePopupView = getLayoutInflater().inflate(R.layout.rate_workshop_popup, null);
+        rate5 = ratePopupView.findViewById(R.id.ocena5);
+        rate4 = ratePopupView.findViewById(R.id.ocena4);
+        rate3 = ratePopupView.findViewById(R.id.ocena3);
+        rate2 = ratePopupView.findViewById(R.id.ocena2);
+        rate1 = ratePopupView.findViewById(R.id.ocena1);
 
+        alertDialogBuilder.setView(ratePopupView);
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+        WorkshopsViewModel workshopsViewModel = new ViewModelProvider(this).get(WorkshopsViewModel.class);
+        rate5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Ocena 5");
+            }
+        });
+        rate4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        rate3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        rate2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        rate1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
+
+    }
+
+    @Override
+    public void onButtonClickListener(int position, Object value) {
+        System.out.println("Kliknales przycisk nr " + position);
+        createRateContactDialog();
+    }
 }

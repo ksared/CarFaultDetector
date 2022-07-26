@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -10,7 +11,7 @@
         android:layout_marginTop="16dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:orientation="horizontal">
@@ -20,24 +21,54 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="nazwa"/>
+                android:width="110dp"
+                android:textSize="16dp"
+                android:padding="15dp"
+                android:gravity="center"
+                android:text="nazwa" />
+
             <TextView
                 android:id="@+id/addressOfWorkshop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:width="110dp"
+                android:gravity="center"
+                android:textSize="16dp"
                 android:layout_toRightOf="@+id/nameOfWorkshop"
                 android:padding="15dp"
-                android:text="adres"/>
+                android:text="adres" />
 
             <TextView
                 android:id="@+id/rateOfWorkshop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="16dp"
+                android:width="80dp"
                 android:layout_toRightOf="@+id/addressOfWorkshop"
                 android:padding="15dp"
-                android:text="ocena"/>
+                android:text="ocena" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right"
+                >
+                <Button
+                    android:id="@+id/buttonRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:textSize="19dp"
+                    android:layout_toRightOf="@+id/rateOfWorkshop"
+                    android:text="Oceń" />
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
