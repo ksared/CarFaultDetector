@@ -13,6 +13,9 @@
         android:theme="@style/Theme.CarFaultDetector"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.FaultActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.WorkshopsActivity"
             android:exported="false" />
         <activity

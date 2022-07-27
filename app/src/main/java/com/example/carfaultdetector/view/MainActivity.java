@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button loginButton;
     Button signUpButton;
     Button workShopButton;
+    Button faultButton;
     TextView textView;
     User user = new User(null, null);
     @Override
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setLoginButton();
         setSignUpButton();
         setWorkShopButton();
+        setFaultButton();
 
     }
 
@@ -78,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void setFaultButton(){
+        faultButton = findViewById(R.id.fault);
+        faultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FaultActivity.class);
                 startActivity(intent);
             }
         });
