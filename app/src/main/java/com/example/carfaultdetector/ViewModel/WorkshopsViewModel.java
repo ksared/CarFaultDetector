@@ -111,36 +111,42 @@ public class WorkshopsViewModel extends ViewModel {
         call.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
-                System.out.println(response.body());
-                List<Object> list = (List<Object>) response.body();
-                System.out.println(list.get(0).toString());
-                String name;
-                String address;
-                double numberofRates;
-                double rate;
-                System.out.println("wielkosc listy: " + list.size());
-                workshops = new Workshop[list.size()];
+                if(response.code()==200){
+                    System.out.println(response.body());
+                    List<Object> list = (List<Object>) response.body();
+                    System.out.println(list.get(0).toString());
+                    String name;
+                    String address;
+                    double numberofRates;
+                    double rate;
+                    System.out.println("wielkosc listy: " + list.size());
+                    workshops = new Workshop[list.size()];
 
-                String pomocnik;
-                for(int i = 0; i<list.size(); i++){
-                    workshops[i] = new Workshop();
-                    pomocnik = list.get(i).toString();
-                    name = pomocnik.substring(pomocnik.indexOf("name") + 5, pomocnik.indexOf("address") - 2);
-                    address = pomocnik.substring(pomocnik.indexOf("address") + 8, pomocnik.indexOf("number") - 2);
-                    numberofRates = Double.parseDouble(pomocnik.substring(pomocnik.indexOf("Rates") + 6, pomocnik.indexOf("rate") - 2)) ;
-                    rate = Double.parseDouble( pomocnik.substring(pomocnik.indexOf("rate") + 5, pomocnik.length()-1) );
-                    workshops[i].setName(name);
-                    workshops[i].setAddress(address);
-                    if(numberofRates==0){
-                        workshops[i].setRate(0);
+                    String pomocnik;
+                    for(int i = 0; i<list.size(); i++){
+                        workshops[i] = new Workshop();
+                        pomocnik = list.get(i).toString();
+                        name = pomocnik.substring(pomocnik.indexOf("name") + 5, pomocnik.indexOf("address") - 2);
+                        address = pomocnik.substring(pomocnik.indexOf("address") + 8, pomocnik.indexOf("number") - 2);
+                        numberofRates = Double.parseDouble(pomocnik.substring(pomocnik.indexOf("Rates") + 6, pomocnik.indexOf("rate") - 2)) ;
+                        rate = Double.parseDouble( pomocnik.substring(pomocnik.indexOf("rate") + 5, pomocnik.length()-1) );
+                        workshops[i].setName(name);
+                        workshops[i].setAddress(address);
+                        if(numberofRates==0){
+                            workshops[i].setRate(0);
+                        }
+                        else{
+                            workshops[i].setRate(rate/numberofRates);
+                        }
+                        System.out.println("Name: " + workshops[i].getName() + " address: " + workshops[i].getAddress()
+                                + " rate: " + workshops[i].getRate());
                     }
-                    else{
-                        workshops[i].setRate(rate/numberofRates);
-                    }
-                    System.out.println("Name: " + workshops[i].getName() + " address: " + workshops[i].getAddress()
-                    + " rate: " + workshops[i].getRate());
+                    mutableLiveData2.setValue(workshops);
                 }
-                mutableLiveData2.setValue(workshops);
+                else{
+
+                }
+
 
             }
             @Override
