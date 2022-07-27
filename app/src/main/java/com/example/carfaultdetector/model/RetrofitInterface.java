@@ -27,4 +27,7 @@ public interface RetrofitInterface {
 
     @POST("/rateWorkshop")
     Call<Void> rateWorkshop(@Body HashMap<String, String> map);
+
+    @POST("/deleteWorkshop")
+    Call<Void> deleteWorkshop(@Body HashMap<String, String> map);
 }

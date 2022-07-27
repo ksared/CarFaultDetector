@@ -26,7 +26,8 @@ public class WorkshopAdapter extends BaseAdapter {
     private Workshop[] workshops;
     private LayoutInflater layoutInflater;
 
-    ButtonListener buttonListener;
+    ButtonListener ratebuttonListener;
+    DeleteButtonListener deleteButtonListener;
 
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog alertDialog;
@@ -44,8 +45,11 @@ public class WorkshopAdapter extends BaseAdapter {
         layoutInflater = LayoutInflater.from(ctx);
     }
 
-    public void setButtonListener(ButtonListener listener){
-        this.buttonListener = listener;
+    public void setRateButtonListener(ButtonListener listener){
+        this.ratebuttonListener = listener;
+    }
+    public void setDeleteButtonListener(DeleteButtonListener listener){
+        this.deleteButtonListener = listener;
     }
     @Override
     public int getCount() {
@@ -78,6 +82,7 @@ public class WorkshopAdapter extends BaseAdapter {
             TextView addressTextView = view.findViewById(R.id.addressOfWorkshop);
             TextView rateTextView = view.findViewById(R.id.rateOfWorkshop);
             Button buttonRate = view.findViewById(R.id.buttonRate);
+            Button buttonDelete = view.findViewById(R.id.buttonDelete);
             nameTextView.setText(workshops[i].getName());
             addressTextView.setText(workshops[i].getAddress());
 
@@ -93,12 +98,24 @@ public class WorkshopAdapter extends BaseAdapter {
         buttonRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Nacisnalem przycisk");
-                if(buttonListener != null){
+                System.out.println("Nacisnalem przycisk oceny");
+                if(ratebuttonListener != null){
                     System.out.println("jest interface");
-                    buttonListener.onButtonClickListener(i, temp);
+                    ratebuttonListener.onButtonClickListener(i, temp);
                 }
 
+            }
+        });
+
+        Button buttonDelete = view.findViewById(R.id.buttonDelete);
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Nacisnalem przycisk usuwania");
+                if(deleteButtonListener != null){
+                    System.out.println("Usuwanie");
+                    deleteButtonListener.onButtonDeleteClickListener(i, temp);
+                }
             }
         });
         return view;

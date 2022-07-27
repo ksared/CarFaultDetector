@@ -17,13 +17,14 @@ import android.widget.Toast;
 import com.example.carfaultdetector.R;
 import com.example.carfaultdetector.ViewModel.WorkshopsViewModel;
 import com.example.carfaultdetector.adapter.ButtonListener;
+import com.example.carfaultdetector.adapter.DeleteButtonListener;
 import com.example.carfaultdetector.adapter.WorkshopAdapter;
 import com.example.carfaultdetector.model.Workshop;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.HashMap;
 
-public class WorkshopsActivity extends AppCompatActivity implements ButtonListener {
+public class WorkshopsActivity extends AppCompatActivity implements ButtonListener, DeleteButtonListener {
 
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog alertDialog;
@@ -54,7 +55,8 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
             public void onChanged(Workshop[] worksh) {
 
                 WorkshopAdapter workshopAdapter = new WorkshopAdapter(getApplicationContext(), worksh);
-                workshopAdapter.setButtonListener(WorkshopsActivity.this);
+                workshopAdapter.setRateButtonListener(WorkshopsActivity.this);
+                workshopAdapter.setDeleteButtonListener(WorkshopsActivity.this);
                 workshopsListView.setAdapter(workshopAdapter);
             }
         });
@@ -189,5 +191,16 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
     public void onButtonClickListener(int position, Object value) {
         System.out.println("Kliknales przycisk nr " + position);
         createRateContactDialog((Workshop) value);
+    }
+
+    @Override
+    public void onButtonDeleteClickListener(int position, Object value) {
+        deleteWorkshop((Workshop) value);
+    }
+
+    public void deleteWorkshop(Workshop workshop){
+        workshopsViewModel = new ViewModelProvider(this).get(WorkshopsViewModel.class);
+        workshopsViewModel.deleteWorkshop(workshop);
+
     }
 }

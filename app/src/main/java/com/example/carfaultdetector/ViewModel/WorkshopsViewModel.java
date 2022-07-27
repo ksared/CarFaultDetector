@@ -33,6 +33,7 @@ public class WorkshopsViewModel extends ViewModel {
     public MutableLiveData<Integer> mutableLiveData = new MutableLiveData<>();
     public MutableLiveData<Workshop[]> mutableLiveData2 = new MutableLiveData<>();
     public MutableLiveData<Integer> mutableLiveDataRateReturn = new MutableLiveData<>();
+    public MutableLiveData<Integer> mutableLiveDataDelete = new MutableLiveData<>();
     private int httpCode;
     private Workshop[] workshops;
     //public static Workshop workshop;
@@ -145,6 +146,28 @@ public class WorkshopsViewModel extends ViewModel {
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
                 System.out.println("Nie udalo sie " + t);
+            }
+        });
+    }
+
+    public void deleteWorkshop(Workshop workshop){
+        retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create()).build();
+        retrofitInterface = retrofit.create(RetrofitInterface.class);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", workshop.getName());
+
+        Call<Void> call = retrofitInterface.deleteWorkshop(map);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println("Usuniety");
+                mutableLiveDataDelete.setValue(200);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println("Blad");
+                mutableLiveDataDelete.setValue(400);
             }
         });
     }
