@@ -32,6 +32,7 @@ public class WorkshopsViewModel extends ViewModel {
     HashMap<String, String> map;
     public MutableLiveData<Integer> mutableLiveData = new MutableLiveData<>();
     public MutableLiveData<Workshop[]> mutableLiveData2 = new MutableLiveData<>();
+    public MutableLiveData<Integer> mutableLiveDataRateReturn = new MutableLiveData<>();
     private int httpCode;
     private Workshop[] workshops;
     //public static Workshop workshop;
@@ -84,6 +85,15 @@ public class WorkshopsViewModel extends ViewModel {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 System.out.println("Oceniono");
+                if(response.code() == 200){
+                    mutableLiveDataRateReturn.setValue(200);
+                }
+                else if(response.code() == 400){
+                    mutableLiveDataRateReturn.setValue(400);
+                }
+                else{
+                    mutableLiveDataRateReturn.setValue(404);
+                }
             }
 
             @Override

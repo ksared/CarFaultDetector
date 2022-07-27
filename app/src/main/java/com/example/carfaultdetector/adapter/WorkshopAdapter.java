@@ -17,6 +17,9 @@ import com.example.carfaultdetector.model.Workshop;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class WorkshopAdapter extends BaseAdapter {
 
     private Context ctx;
@@ -77,7 +80,9 @@ public class WorkshopAdapter extends BaseAdapter {
             Button buttonRate = view.findViewById(R.id.buttonRate);
             nameTextView.setText(workshops[i].getName());
             addressTextView.setText(workshops[i].getAddress());
-            rateTextView.setText(String.valueOf(workshops[i].getRate()));
+
+            NumberFormat formatter = new DecimalFormat("#0.0");
+            rateTextView.setText(String.valueOf(formatter.format(workshops[i].getRate())));
 
         }
         else{

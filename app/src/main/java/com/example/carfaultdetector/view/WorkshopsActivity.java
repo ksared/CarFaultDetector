@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.carfaultdetector.R;
 import com.example.carfaultdetector.ViewModel.WorkshopsViewModel;
@@ -31,6 +32,7 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
     private FloatingActionButton viewDialogButton;
     private ListView workshopsListView;
     private Workshop workshops;
+    private WorkshopsViewModel workshopsViewModel;
 
     private Button rate5;
     private Button rate4;
@@ -43,7 +45,7 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
         setContentView(R.layout.activity_workshops);
         workshopsListView = findViewById(R.id.workshopsListView);
 
-        WorkshopsViewModel workshopsViewModel = new ViewModelProvider(this).get(WorkshopsViewModel.class);
+        workshopsViewModel = new ViewModelProvider(this).get(WorkshopsViewModel.class);
         workshopsViewModel.getWorkshops();
         addListen();
 
@@ -54,6 +56,19 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
                 WorkshopAdapter workshopAdapter = new WorkshopAdapter(getApplicationContext(), worksh);
                 workshopAdapter.setButtonListener(WorkshopsActivity.this);
                 workshopsListView.setAdapter(workshopAdapter);
+            }
+        });
+
+        workshopsViewModel.mutableLiveDataRateReturn.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if(integer == 200){
+                    Toast.makeText(getApplicationContext(),"Udalo sie ocenic warsztat", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Nieznany blad",Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
@@ -93,6 +108,7 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
 
                 int result = workshopsViewModel.addWorkshop(map);
                 System.out.println("Result: " + result);
+                workshopsViewModel.getWorkshops();
                 alertDialog.dismiss();
             }
         });
@@ -115,20 +131,31 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
             public void onClick(View view) {
                 System.out.println("Ocena 5 warsztat: " + workshop.getName());
                 workshopsViewModel.rateWorkshop(workshop, "5");
+
+                alertDialog.dismiss();
+                workshopsViewModel.getWorkshops();
             }
         });
         rate4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Ocena 4 warsztat: " + workshop.getName());
+
                 workshopsViewModel.rateWorkshop(workshop, "4");
+
+                alertDialog.dismiss();
+                workshopsViewModel.getWorkshops();
             }
         });
         rate3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Ocena 3 warsztat: " + workshop.getName());
+
                 workshopsViewModel.rateWorkshop(workshop, "3");
+
+                alertDialog.dismiss();
+                workshopsViewModel.getWorkshops();
             }
         });
         rate2.setOnClickListener(new View.OnClickListener() {
@@ -136,13 +163,21 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
             public void onClick(View view) {
                 System.out.println("Ocena 2 warsztat: " + workshop.getName());
                 workshopsViewModel.rateWorkshop(workshop, "2");
+
+                alertDialog.dismiss();
+                workshopsViewModel.getWorkshops();
             }
         });
         rate1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 System.out.println("Ocena 1 warsztat: " + workshop.getName());
+
                 workshopsViewModel.rateWorkshop(workshop, "1");
+
+
+                alertDialog.dismiss();
+                workshopsViewModel.getWorkshops();
             }
         });
 
