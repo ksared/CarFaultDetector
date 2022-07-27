@@ -50,6 +50,13 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
         workshopsViewModel.getWorkshops();
         addListen();
 
+        workshopsViewModel.mutableLiveData.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                workshopsViewModel.getWorkshops();
+            }
+        });
+
         workshopsViewModel.mutableLiveData2.observe(this, new Observer<Workshop[]>() {
             @Override
             public void onChanged(Workshop[] worksh) {
@@ -66,11 +73,33 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
             public void onChanged(Integer integer) {
                 if(integer == 200){
                     Toast.makeText(getApplicationContext(),"Udalo sie ocenic warsztat", Toast.LENGTH_LONG).show();
+                    workshopsViewModel.getWorkshops();
+
+                }
+                else if(integer == 400){
+                    Toast.makeText(getApplicationContext(),"Istnieje już taki warsztat!", Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Nieznany blad",Toast.LENGTH_LONG).show();
                 }
 
+            }
+        });
+
+        workshopsViewModel.mutableLiveDataDelete.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                if(integer == 200){
+                    Toast.makeText(getApplicationContext(),"Udalo sie usunac warsztat", Toast.LENGTH_LONG).show();
+                    workshopsViewModel.getWorkshops();
+
+                }
+                else if(integer == 400){
+                    Toast.makeText(getApplicationContext(),"nie ma juz takiego warsztatu!", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Nieznany blad",Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -110,7 +139,6 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
 
                 int result = workshopsViewModel.addWorkshop(map);
                 System.out.println("Result: " + result);
-                workshopsViewModel.getWorkshops();
                 alertDialog.dismiss();
             }
         });
@@ -135,7 +163,6 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
                 workshopsViewModel.rateWorkshop(workshop, "5");
 
                 alertDialog.dismiss();
-                workshopsViewModel.getWorkshops();
             }
         });
         rate4.setOnClickListener(new View.OnClickListener() {
@@ -146,7 +173,7 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
                 workshopsViewModel.rateWorkshop(workshop, "4");
 
                 alertDialog.dismiss();
-                workshopsViewModel.getWorkshops();
+
             }
         });
         rate3.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +184,7 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
                 workshopsViewModel.rateWorkshop(workshop, "3");
 
                 alertDialog.dismiss();
-                workshopsViewModel.getWorkshops();
+
             }
         });
         rate2.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +194,7 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
                 workshopsViewModel.rateWorkshop(workshop, "2");
 
                 alertDialog.dismiss();
-                workshopsViewModel.getWorkshops();
+
             }
         });
         rate1.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +206,6 @@ public class WorkshopsActivity extends AppCompatActivity implements ButtonListen
 
 
                 alertDialog.dismiss();
-                workshopsViewModel.getWorkshops();
             }
         });
 

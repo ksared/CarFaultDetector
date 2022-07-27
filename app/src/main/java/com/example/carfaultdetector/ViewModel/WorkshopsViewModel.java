@@ -161,13 +161,22 @@ public class WorkshopsViewModel extends ViewModel {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 System.out.println("Usuniety");
-                mutableLiveDataDelete.setValue(200);
+                if(response.code() == 200){
+                    mutableLiveDataDelete.setValue(200);
+                }
+                else if(response.code() == 400){
+                    mutableLiveDataDelete.setValue(400);
+                }
+                else{
+                    mutableLiveDataDelete.setValue(404);
+                }
+
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 System.out.println("Blad");
-                mutableLiveDataDelete.setValue(400);
+                mutableLiveDataDelete.setValue(404);
             }
         });
     }

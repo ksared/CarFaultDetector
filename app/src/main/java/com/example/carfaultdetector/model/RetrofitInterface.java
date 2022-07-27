@@ -30,4 +30,7 @@ public interface RetrofitInterface {
 
     @POST("/deleteWorkshop")
     Call<Void> deleteWorkshop(@Body HashMap<String, String> map);
+
+    @POST("/addFault")
+    Call<Void> addFault(@Body HashMap<String, String> map);
 }

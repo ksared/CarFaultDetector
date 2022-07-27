@@ -13,7 +13,7 @@
         android:theme="@style/Theme.CarFaultDetector"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.FaultActivity"
+            android:name=".view.NewFaultActivity"
             android:exported="false" />
         <activity
             android:name=".view.WorkshopsActivity"
