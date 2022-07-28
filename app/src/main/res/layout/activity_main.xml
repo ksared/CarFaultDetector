@@ -6,11 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
     <Button
+        android:id="@+id/faultIssueButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Connect fault - issue"/>
+    <Button
         android:id="@+id/fault"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Faults" />
+        android:layout_below="@+id/faultIssueButton"
+        android:text="Add fault" />
     <Button
         android:id="@+id/workshop"
         android:layout_width="wrap_content"

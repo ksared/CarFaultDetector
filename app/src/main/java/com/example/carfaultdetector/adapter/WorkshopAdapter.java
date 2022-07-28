@@ -68,6 +68,7 @@ public class WorkshopAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
+        System.out.println("Get view w workshopadapter");
         ViewHolder viewHolder;
         if(view==null){
             view = layoutInflater.inflate(R.layout.workshoplist_item, null);
@@ -98,9 +99,7 @@ public class WorkshopAdapter extends BaseAdapter {
         buttonRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("Nacisnalem przycisk oceny");
                 if(ratebuttonListener != null){
-                    System.out.println("jest interface");
                     ratebuttonListener.onButtonClickListener(i, temp);
                 }
 

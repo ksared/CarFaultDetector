@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/activity_fault.xml" value="0.264" />
+        <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/activity_faultissue.xml" value="0.25" />
         <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/activity_workshops.xml" value="0.2" />
+        <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/fault_issue_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/fault_issue_popup.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/login_dialog.xml" value="0.2" />
         <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/new_workshop_popup.xml" value="0.22056159420289856" />
         <entry key="..\:/Users/Bartek/AndroidStudioProjects/CarFaultDetector/app/src/main/res/layout/rate_workshop_popup.xml" value="0.25416666666666665" />

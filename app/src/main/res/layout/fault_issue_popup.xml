@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/nameOfFaultLabelPopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Nazwa usterki"/>
+
+            <TextView
+                android:id="@+id/nameOfFaultPopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:text="name of fault"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/issueLabelPopup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zaznacz objawy"/>
+
+            <CheckBox
+                android:id="@+id/halasSilnika"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="halasSilnika" />
+            <CheckBox
+                android:id="@+id/halasZawieszenia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="halasZawieszenia" />
+            <CheckBox
+                android:id="@+id/czarnyDym"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="czarnyDym" />
+            <CheckBox
+                android:id="@+id/szarpanie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="szarpanie" />
+            <CheckBox
+                android:id="@+id/bicieKierownicy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="bicie Kierownicy" />
+            <CheckBox
+                android:id="@+id/sciaganiePodczasHamowania"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ściąganie podczas hamowania" />
+            <CheckBox
+                android:id="@+id/sciaganiePodczasJazdy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ściąganie podczas jazdy" />
+            <CheckBox
+                android:id="@+id/wibracjeSilnika"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wibracje silnika" />
+            <CheckBox
+                android:id="@+id/halasPodczasHamowania"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hałas podczas hamowania" />
+            <CheckBox
+                android:id="@+id/glosnaPracaUkladuWyd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Głośna praca układu wydechowego" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/addIssuePopupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dodaj"/>
+
+
+
+
+</LinearLayout>

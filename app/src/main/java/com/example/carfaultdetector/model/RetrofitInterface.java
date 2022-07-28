@@ -33,4 +33,10 @@ public interface RetrofitInterface {
 
     @POST("/addFault")
     Call<Void> addFault(@Body HashMap<String, String> map);
+
+    @GET("/getAllFaults")
+    Call<Object> executeGetAllFaluts();
+
+    @POST("/modifyFaultIssue")
+    Call<Void> modifyFaultIssue(@Body HashMap<String, String> map);
 }

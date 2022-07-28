@@ -5,7 +5,7 @@ import java.util.List;
 public class Fault {
     private String name;
 
-    private List<Integer> issueList;
+    private List<Double> issueList;
 
 
     public String getName() {
@@ -16,11 +16,11 @@ public class Fault {
         this.name = name;
     }
 
-    public List<Integer> getIssueList() {
+    public List<Double> getIssueList() {
         return issueList;
     }
 
-    public void setIssueList(List<Integer> issueList) {
+    public void setIssueList(List<Double> issueList) {
         this.issueList = issueList;
     }
 }
