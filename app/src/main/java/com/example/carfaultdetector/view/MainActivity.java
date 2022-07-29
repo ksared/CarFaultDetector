@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     Button workShopButton;
     Button faultButton;
     Button faultIssueButton;
+    Button faultIssueCorelationButton;
     TextView textView;
+
     User user = new User(null, null);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         setWorkShopButton();
         setFaultButton();
         setFaultIssueButton();
+        setFaultIssueCorelationButton();
 
     }
 
@@ -63,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
         }
 */
 
+    }
+
+    private void setFaultIssueCorelationButton(){
+        faultIssueCorelationButton = findViewById(R.id.faultIssueMainActivityButton);
+        faultIssueCorelationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FaultIssueCorrelationActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setFaultIssueButton(){

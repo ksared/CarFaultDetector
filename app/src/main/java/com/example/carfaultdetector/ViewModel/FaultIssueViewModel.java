@@ -55,15 +55,21 @@ public class FaultIssueViewModel extends ViewModel {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.code()==200){
                     System.out.println("Poszlo ok");
+                    mutableLiveDataAddIssue.setValue(200);
+                }
+                else if(response.code() == 404){
+                    mutableLiveDataAddIssue.setValue(404);
                 }
                 else{
                     System.out.println("Nie poszlo ok");
+                    mutableLiveDataAddIssue.setValue(400);
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 System.out.println("Nie poszlo ok");
+                mutableLiveDataAddIssue.setValue(400);
 
             }
         });
