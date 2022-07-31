@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/odpalTreeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textColor="@color/black"
+        android:text="Wybrano problem z odpalaniem"/>
+    <TextView
+        android:id="@+id/odpalTreeSubTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Wybierz wszystkie pasujące objawy"/>
+
+    <CheckBox
+        android:id="@+id/odpalTreeNieReagujeKluczyk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pojazd nie reaguje na kluczyk" />
+    <CheckBox
+        android:id="@+id/odpalTreeBrakPradu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nie ma prądu" />
+    <CheckBox
+        android:id="@+id/odpalTreeNieKreci"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Brak reakcji na start silnika" />
+    <CheckBox
+        android:id="@+id/odpalTreeKreci"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rozrusznik kręci, ale nie odpala" />
+    <CheckBox
+        android:id="@+id/odpalTreeKreciGasnie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pojazd uruchamia się, ale gaśnie" />
+    <CheckBox
+        android:id="@+id/odpalTreeNiskiPoziomPaliwa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Niski poziom paliwa" />
+
+    <CheckBox
+        android:id="@+id/odpalTreeKontrolkaOleju"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Swiecaca się kontrolka oleju" />
+    <CheckBox
+        android:id="@+id/odpalTreeNiskaTemperatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Temperatura otoczenia jest poniżej 0" />
+    <Button
+        android:id="@+id/odpalTreefindFaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Szukaj"/>
+
+
+
+
+</LinearLayout>

@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
     <Button
-        android:id="@+id/faultIssueMainActivityButton"
+        android:id="@+id/decision_tree_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Find Fault"
+        android:text="Find Fault decision tree"
+
+        />
+    <Button
+        android:id="@+id/faultIssueMainActivityButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/decision_tree_button"
+        android:layout_centerInParent="true"
+        android:text="Find Fault correlation"
 
         />
     <Button

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/halastreeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textColor="@color/black"
+        android:text="Wybrano Hałas"/>
+    <TextView
+        android:id="@+id/halastreeSubTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Wybierz wszystkie pasujące objawy"/>
+
+    <CheckBox
+        android:id="@+id/halastreeHalasSilnika"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hałas silnika" />
+    <CheckBox
+        android:id="@+id/halastreeHalasKola"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hałas w okolicach koła" />
+    <CheckBox
+        android:id="@+id/halastreeHalasWydechu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hałas wydechu" />
+    <CheckBox
+        android:id="@+id/halastreeHalasPodczasHamowania"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hałas podczas hamowania" />
+    <CheckBox
+        android:id="@+id/halastreeBicieKierownicy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bicie kierownicy" />
+    <CheckBox
+        android:id="@+id/halastreeCheckEngine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kontrolka check engine" />
+
+    <CheckBox
+        android:id="@+id/halastreeSciaganiePodczasJazdyWyszukiwanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ściąganie podczas jazdy" />
+    <CheckBox
+        android:id="@+id/halastreeWibracjeSilnikaWyszukiwanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wibracje silnika" />
+    <CheckBox
+        android:id="@+id/halastreeHalasPodczasSkrecania"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hałas podczas skręcania" />
+    <CheckBox
+        android:id="@+id/halastreeHalasNaObrotach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hałas podczas wyższych obrotów" />
+    <CheckBox
+        android:id="@+id/halastreeSzarpanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Szarpanie" />
+    <Button
+        android:id="@+id/halasTreefindFaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Szukaj"/>
+
+
+
+
+</LinearLayout>

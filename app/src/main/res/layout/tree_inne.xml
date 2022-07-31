@@ -1,0 +1,76 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/innetreeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textColor="@color/black"
+        android:text="Wybrano Inne"/>
+    <TextView
+        android:id="@+id/innetreeSubTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Wybierz wszystkie pasujące objawy"/>
+
+    <CheckBox
+        android:id="@+id/innetreeBialyDym"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dymienie na biało" />
+    <CheckBox
+        android:id="@+id/innetreeCzarnyDym"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dymienie na czarno" />
+    <CheckBox
+        android:id="@+id/inneTreeSzarpanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Szarpanie podczas jazdy" />
+    <CheckBox
+        android:id="@+id/inneTreeMoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Brak mocy" />
+    <CheckBox
+        android:id="@+id/inneTreePaliwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Zbyt duże zużycie paliwa" />
+    <CheckBox
+        android:id="@+id/inneTreeBrakLadowania"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Brak ładowania" />
+
+    <CheckBox
+        android:id="@+id/inneTreeHamulce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Słabe działanie hamulców" />
+    <CheckBox
+        android:id="@+id/inneTreeSciaganieJazda"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sciąganie podczas jazdy" />
+    <CheckBox
+        android:id="@+id/inneTreeSciaganieHamowanie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sciaganie podczas hamowania" />
+    <Button
+        android:id="@+id/inneTreefindFaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Szukaj"/>
+
+
+
+
+</LinearLayout>

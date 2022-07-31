@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/controlTreeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24dp"
+        android:textColor="@color/black"
+        android:text="Wybrano Kontrolki"/>
+    <TextView
+        android:id="@+id/controlTreeSubTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:text="Wybierz wszystkie pasujące objawy"/>
+
+    <CheckBox
+        android:id="@+id/controlTreeCheckEngine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Check Engine" />
+    <CheckBox
+        android:id="@+id/controlTreeStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stop" />
+    <CheckBox
+        android:id="@+id/controlTreeLampa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lampa Alladyna" />
+    <CheckBox
+        android:id="@+id/controlTreeOlej"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Olej" />
+    <CheckBox
+        android:id="@+id/controlTreeABS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ABS" />
+    <CheckBox
+        android:id="@+id/controlTreeOpona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Opona" />
+
+
+    <Button
+        android:id="@+id/controlTreefindFaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Szukaj"/>
+
+
+
+
+</LinearLayout>

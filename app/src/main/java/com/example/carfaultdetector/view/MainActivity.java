@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     Button faultButton;
     Button faultIssueButton;
     Button faultIssueCorelationButton;
+    Button faultDecisionTree;
     TextView textView;
 
     User user = new User(null, null);
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setFaultButton();
         setFaultIssueButton();
         setFaultIssueCorelationButton();
+        setFaultDecisionTree();
 
     }
 
@@ -52,20 +54,17 @@ public class MainActivity extends AppCompatActivity {
         else{
             textView.setText("Witaj " + Global.userName);
         }
-   /*     if(b!=null){
-            //System.out.println("Ekstrasy: " + b.get("email"));
-            //textView.setText("Witaj " + b.get("name"));
-            user.setName(b.get("name").toString());
-            user.setEmail(b.get("email").toString());
-            System.out.println("User: " + user.getEmail() + " " + user.getName());
-            textView.setText("Witaj " + Global.userName);
-        }
-        else{
-            System.out.println("nie ma ekstrasow");
-            System.out.println("User: " + user.getEmail() + " " + user.getName());
-        }
-*/
+    }
 
+    private void setFaultDecisionTree(){
+        faultDecisionTree = findViewById(R.id.decision_tree_button);
+        faultDecisionTree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FaultDecisionTree.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setFaultIssueCorelationButton(){

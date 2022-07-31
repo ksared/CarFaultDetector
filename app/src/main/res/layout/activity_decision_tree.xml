@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/infoTreeTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:text="Kliknij w pasującą usterkę"/>
+
+    <Button
+        android:id="@+id/halasTreeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hałas"
+        />
+    <Button
+        android:id="@+id/odpalanieTreeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Problem z odpalaniem"
+        />
+    <Button
+        android:id="@+id/controlTreeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kontrolki na desce"
+        />
+    <Button
+        android:id="@+id/othersTreeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inne"
+        />
+</LinearLayout>
