@@ -37,7 +37,7 @@ public class NewFaultActivity extends AppCompatActivity {
         });
         viewModel.mutableLiveDataNewFault.observe(this, new Observer<Integer>() {
             @Override
-            public void onChanged(Integer integer) {
+            public void onChanged( Integer integer) {
                 if(integer == 200){
                     Toast.makeText(getApplicationContext(),"Udalo sie dodac usterke", Toast.LENGTH_LONG).show();
                 }
