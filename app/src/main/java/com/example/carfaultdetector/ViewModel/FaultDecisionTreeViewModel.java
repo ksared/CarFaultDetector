@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModel;
 
 public class FaultDecisionTreeViewModel extends ViewModel {
 
-    public MutableLiveData<Integer> mutableLiveDataHalas = new MutableLiveData<>();
-    protected String wynik = "";
+    //public MutableLiveData<Integer> mutableLiveDataHalas = new MutableLiveData<>();
+    protected String wynik = "Zbyt mało informacji do stwierdzenia usterki";
 
-    public String wynikHalas(boolean[] bool){
+    public String wynikHalas(Boolean[] bool){
+        wynik = "Zbyt mało informacji do stwierdzenia usterki";
         if(bool[0]){
             if(bool[5]){
                 if(bool[10]){
@@ -93,7 +94,116 @@ public class FaultDecisionTreeViewModel extends ViewModel {
         return wynik;
     }
 
-    public String wynikOdpalanie(){
+
+    public String wynikOdpalanie(Boolean[] bool){
+        wynik = "Zbyt mało informacji do stwierdzenia usterki";
+
+        if(bool[5]){
+            wynik = "Należy uzupełnić poziom paliwa";
+            return wynik;
+        }
+        if(bool[1]){
+            wynik = "Należy sprawdzić stan akumulatora, następnie podpięcie kabli do akumulatora";
+            return wynik;
+        }
+        if(bool[0]){
+            wynik = "Uszkodzony immobilizer";
+            return wynik;
+        }
+        if(bool[2]){
+            if(bool[6]){
+                wynik = "Uszkodzenie pompy oleju";
+            }
+            else if(bool[7]){
+                wynik = "Należy sprawdzić stan naładowania akumulatora";
+            }
+            else{
+                wynik = "Uszkodzony rozrusznik";
+            }
+            return wynik;
+        }
+        if(bool[3]){
+            wynik = "Należy sprawdzić stan świec zapłonowych/żarowych i kompresji silnika";
+            return wynik;
+        }
+        if(bool[4]){
+            if(bool[6]){
+                wynik = "Zbyt niski poziom oleju lub uszkodzona pompa oleju";
+            }
+            else if(bool[7]){
+                wynik = "Uszkodzone świece żarowe";
+            }
+            else{
+                wynik = "Uszkodzona pompa paliwa";
+            }
+            return wynik;
+        }
+        if(bool[6]){
+            wynik = "Zbyt mało informacji do stwierdzenia usterki";
+            return wynik;
+        }
+        if(bool[7]){
+            wynik = "Zbyt mało informacji do stwierdzenia usterki";
+        }
         return  wynik;
+    }
+
+    public String wynikInne(Boolean[] booleans){
+        wynik = "Zbyt mało informacji do stwierdzenia usterki";
+        if(booleans[3]){
+            if(booleans[1]){
+                if(booleans[2]){
+                    if(booleans[7]){
+                        wynik = "Uszkodzona opona";
+                    }
+                    else {
+                        wynik = "Dziura w dolocie";
+                    }
+                }
+                else {
+                    wynik = "Uszkodzona turbina";
+                }
+            }
+            else if(booleans[0]){
+                if(booleans[4]){
+                    wynik = "Uszkodzona sonda lambda";
+                }
+                else{
+                    wynik = "Zbyt mała kompresja silnika";
+                }
+            }
+            else if(booleans[2]){
+                wynik = "Uszkodzony czujnik połozenia wału";
+            }
+        }
+        else if(booleans[6]){
+            if(booleans[8]){
+                wynik = "Uszkodzony zacisk lub układ ABS";
+            }
+            else if(booleans[7]){
+                wynik = "Niewłaściwa zbieżność lub geometria";
+            }
+            else{
+                wynik = "Uszkodzony układ hamulcowy";
+            }
+        }
+        else if(booleans[2]){
+            if(booleans[5]){
+                wynik = "Uszkodzona elektronika";
+            }
+            else{
+                wynik = "Uszkodzona układ paliwowy";
+            }
+        }
+        else if(booleans[7]){
+            if(booleans[8]){
+                wynik = "Zapieczony hamulec";
+            }
+            else{
+                wynik = "Za małe ciśnienie w jednej z opon";
+            }
+        }
+
+        return wynik;
     }
 }
