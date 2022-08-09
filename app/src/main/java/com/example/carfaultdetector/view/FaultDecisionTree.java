@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 
 import com.example.carfaultdetector.R;
 import com.example.carfaultdetector.ViewModel.FaultDecisionTreeViewModel;
@@ -57,8 +58,6 @@ public class FaultDecisionTree extends AppCompatActivity {
                 CheckBox halasObroty = findViewById(R.id.halastreeHalasNaObrotach);
                 CheckBox szarpanie = findViewById(R.id.halastreeSzarpanie);
                 Button halasButton = findViewById(R.id.halasTreefindFaultButton);
-
-
 
                 halasButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -154,7 +153,60 @@ public class FaultDecisionTree extends AppCompatActivity {
         kontrolkiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 setContentView(R.layout.tree_kontrolki);
+
+                ImageButton absImageButton = findViewById(R.id.absIndicator);
+                ImageButton accumulatorImageButton = findViewById(R.id.accumulator);
+                ImageButton oilImageButton = findViewById(R.id.oil);
+                ImageButton checkEngineImageButton = findViewById(R.id.checkEngine);
+                ImageButton tpmsImageButton = findViewById(R.id.tpms);
+
+                absImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(FaultDecisionTree.this);
+                        builder.setTitle("Opis kontrolki");
+                        builder.setMessage("Awaria układu hamulcowego");
+                        builder.show();
+                    }
+                });
+                accumulatorImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(FaultDecisionTree.this);
+                        builder.setTitle("Opis kontrolki");
+                        builder.setMessage("Brak ładowania akumulatora");
+                        builder.show();
+                    }
+                });
+                oilImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(FaultDecisionTree.this);
+                        builder.setTitle("Opis kontrolki");
+                        builder.setMessage("Niskie ciśnienie oleju");
+                        builder.show();
+                    }
+                });
+                checkEngineImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(FaultDecisionTree.this);
+                        builder.setTitle("Opis kontrolki");
+                        builder.setMessage("Check engine - awaria silnika");
+                        builder.show();
+                    }
+                });
+                tpmsImageButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(FaultDecisionTree.this);
+                        builder.setTitle("Opis kontrolki");
+                        builder.setMessage("Niskie ciśnienie w oponach");
+                        builder.show();
+                    }
+                });
             }
         });
     }
