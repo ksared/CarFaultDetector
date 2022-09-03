@@ -13,6 +13,9 @@
         android:theme="@style/Theme.CarFaultDetector"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.PresentedFaults"
+            android:exported="false" />
+        <activity
             android:name=".view.FaultDecisionTree"
             android:exported="false" />
         <activity
