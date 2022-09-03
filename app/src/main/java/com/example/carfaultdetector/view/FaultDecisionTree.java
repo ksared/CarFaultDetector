@@ -2,6 +2,7 @@ package com.example.carfaultdetector.view;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -9,10 +10,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.carfaultdetector.R;
 import com.example.carfaultdetector.ViewModel.FaultDecisionTreeViewModel;
+import com.example.carfaultdetector.model.Global;
+
+import java.util.HashMap;
 
 public class FaultDecisionTree extends AppCompatActivity {
 
@@ -58,6 +64,48 @@ public class FaultDecisionTree extends AppCompatActivity {
                 CheckBox halasObroty = findViewById(R.id.halastreeHalasNaObrotach);
                 CheckBox szarpanie = findViewById(R.id.halastreeSzarpanie);
                 Button halasButton = findViewById(R.id.halasTreefindFaultButton);
+                Button addButton = findViewById(R.id.halasTreeAddFaultButton);
+
+                addButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("issue1", String.valueOf(Global.boolToInt(halasSilnika.isChecked())));
+                        map.put("issue2", String.valueOf(Global.boolToInt(halasKola.isChecked())));
+                        map.put("issue3", String.valueOf(Global.boolToInt(halasWydechu.isChecked())));
+                        map.put("issue4", String.valueOf(Global.boolToInt(halasHamowanie.isChecked())));
+                        map.put("issue5", String.valueOf(Global.boolToInt(bicieKierownicy.isChecked())));
+                        map.put("issue6", String.valueOf(Global.boolToInt(checkEngine.isChecked())));
+                        map.put("issue7", String.valueOf(Global.boolToInt(sciaganie.isChecked())));
+                        map.put("issue8", String.valueOf(Global.boolToInt(wibracje.isChecked())));
+                        map.put("issue9", String.valueOf(Global.boolToInt(halasSkrecanie.isChecked())));
+                        map.put("issue10", String.valueOf(Global.boolToInt(halasObroty.isChecked())));
+                        map.put("issue11", String.valueOf(Global.boolToInt(szarpanie.isChecked())));
+
+                        setContentView(R.layout.add_noise_decission_tree);
+                        EditText noiseNameEditText = findViewById(R.id.noiseFaultEditText);
+                        Button addNoiseButton = findViewById(R.id.addNoiseFaultButton);
+
+                        addNoiseButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                map.put("name", noiseNameEditText.getText().toString());
+                                faultDecisionTreeViewModel.addNoise(map);
+                                faultDecisionTreeViewModel.mutableLiveDataAdd.observe(FaultDecisionTree.this, new Observer<Boolean>() {
+                                    @Override
+                                    public void onChanged(Boolean aBoolean) {
+                                        if(aBoolean){
+                                            Toast.makeText(getApplicationContext(),"Udalo sie dodac usterke", Toast.LENGTH_LONG).show();
+                                        }
+
+                                    }
+                                });
+                            }
+                        });
+
+
+                    }
+                });
 
                 halasButton.setOnClickListener(new View.OnClickListener() {
                     @Override

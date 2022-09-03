@@ -39,4 +39,10 @@ public interface RetrofitInterface {
 
     @POST("/modifyFaultIssue")
     Call<Void> modifyFaultIssue(@Body HashMap<String, String> map);
+
+    @POST("/addNoise")
+    Call<Void> addNoise(@Body HashMap<String, String> map);
+
+    @GET("/getNoise")
+    Call<Object> getNoise(@Body HashMap<String, String> map);
 }

@@ -1,12 +1,59 @@
 package com.example.carfaultdetector.ViewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.carfaultdetector.model.RetrofitInterface;
+import com.example.carfaultdetector.model.User;
+
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FaultDecisionTreeViewModel extends ViewModel {
 
     //public MutableLiveData<Integer> mutableLiveDataHalas = new MutableLiveData<>();
+    private Retrofit retrofit;
+    private RetrofitInterface retrofitInterface;
+    private String BaseURL = "http://10.0.2.2:3000";
+
     protected String wynik = "Zbyt mało informacji do stwierdzenia usterki";
+    public MutableLiveData<Boolean> mutableLiveDataAdd = new MutableLiveData<>();
+
+    public void addNoise(HashMap<String, String> map){
+        retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create())
+                .build();
+        retrofitInterface = retrofit.create(RetrofitInterface.class);
+
+        Call<Void> call = retrofitInterface.addNoise(map);
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.code() == 200) {
+                    Log.d("ok", "kod 200");
+                    mutableLiveDataAdd.setValue(true);
+                    //Log.d("response", response.body().getName() + " " + response.body().getEmail());
+                    //loginTextView.setText("Login");
+                } else if (response.code() == 404) {
+                    Log.d("blad", "kod 404");
+                    mutableLiveDataAdd.setValue(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                mutableLiveDataAdd.setValue(false);
+            }
+        });
+
+    }
 
     public String wynikHalas(Boolean[] bool){
         wynik = "Zbyt mało informacji do stwierdzenia usterki";
