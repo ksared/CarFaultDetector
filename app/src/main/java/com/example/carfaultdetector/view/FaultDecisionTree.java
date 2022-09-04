@@ -115,12 +115,18 @@ public class FaultDecisionTree extends AppCompatActivity {
                                 halasWydechu.isChecked(), halasHamowanie.isChecked(), bicieKierownicy.isChecked(),
                                 checkEngine.isChecked(), sciaganie.isChecked(), wibracje.isChecked(),
                                 halasSkrecanie.isChecked(), halasObroty.isChecked(), szarpanie.isChecked()};
-                        String wynik = faultDecisionTreeViewModel.wynikHalas(bool);
-                        System.out.println("wynik: " + wynik);
-                        AlertDialog.Builder builder = new AlertDialog.Builder(FaultDecisionTree.this);
-                        builder.setTitle("Usterka");
-                        builder.setMessage(wynik);
-                        builder.show();
+                        faultDecisionTreeViewModel.wynikHalas(bool);
+                        faultDecisionTreeViewModel.mutableLiveDataHalas.observe(FaultDecisionTree.this, new Observer<String>() {
+                            @Override
+                            public void onChanged(String s) {
+                                System.out.println("wynik: " + s);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(FaultDecisionTree.this);
+                                builder.setTitle("Usterka");
+                                builder.setMessage(s);
+                                builder.show();
+                            }
+                        });
+
                     }
                 });
             }

@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.carfaultdetector.model.Global;
 import com.example.carfaultdetector.model.RetrofitInterface;
 import com.example.carfaultdetector.model.User;
 
@@ -22,9 +23,11 @@ public class FaultDecisionTreeViewModel extends ViewModel {
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
     private String BaseURL = "http://10.0.2.2:3000";
+    private String wynikHalas;
 
     protected String wynik = "Zbyt mało informacji do stwierdzenia usterki";
     public MutableLiveData<Boolean> mutableLiveDataAdd = new MutableLiveData<>();
+    public MutableLiveData<String> mutableLiveDataHalas = new MutableLiveData<>();
 
     public void addNoise(HashMap<String, String> map){
         retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create())
@@ -55,7 +58,47 @@ public class FaultDecisionTreeViewModel extends ViewModel {
 
     }
 
-    public String wynikHalas(Boolean[] bool){
+    public void wynikHalas(Boolean[] bool){
+
+
+        retrofit = new Retrofit.Builder().baseUrl(BaseURL).addConverterFactory(GsonConverterFactory.create()).build();
+        retrofitInterface = retrofit.create(RetrofitInterface.class);
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("issue1", String.valueOf(Global.boolToInt(bool[0])));
+        map.put("issue2", String.valueOf(Global.boolToInt(bool[1])));
+        map.put("issue3", String.valueOf(Global.boolToInt(bool[2])));
+        map.put("issue4", String.valueOf(Global.boolToInt(bool[3])));
+        map.put("issue5", String.valueOf(Global.boolToInt(bool[4])));
+        map.put("issue6", String.valueOf(Global.boolToInt(bool[5])));
+        map.put("issue7", String.valueOf(Global.boolToInt(bool[6])));
+        map.put("issue8", String.valueOf(Global.boolToInt(bool[7])));
+        map.put("issue9", String.valueOf(Global.boolToInt(bool[8])));
+        map.put("issue10", String.valueOf(Global.boolToInt(bool[9])));
+        map.put("issue11", String.valueOf(Global.boolToInt(bool[10])));
+        Call<String> call = retrofitInterface.getNoise(map);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                wynikHalas = response.body();
+                if(response.code()==200){
+                    System.out.println("Ok - halas");
+                    mutableLiveDataHalas.setValue(wynikHalas);
+                }
+                else{
+                    System.out.println("Not ok");
+                    mutableLiveDataHalas.setValue("Nie znaleziono");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                System.err.println("Failure");
+                mutableLiveDataHalas.setValue("Nieoczekiwany blad");
+            }
+        });
+
+        /*
         wynik = "Zbyt mało informacji do stwierdzenia usterki";
         if(bool[0]){
             if(bool[5]){
@@ -139,6 +182,8 @@ public class FaultDecisionTreeViewModel extends ViewModel {
             wynik = "Zbyt mało informacji do stwierdzenia usterki";
         }
         return wynik;
+
+         */
     }
 
 
