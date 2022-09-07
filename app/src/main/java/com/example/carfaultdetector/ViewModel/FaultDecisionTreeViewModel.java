@@ -22,7 +22,7 @@ public class FaultDecisionTreeViewModel extends ViewModel {
     //public MutableLiveData<Integer> mutableLiveDataHalas = new MutableLiveData<>();
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
-    private String BaseURL = "http://10.0.2.2:3000";
+    private String BaseURL = Global.url;
     private String wynikHalas;
 
     protected String wynik = "Zbyt mało informacji do stwierdzenia usterki";

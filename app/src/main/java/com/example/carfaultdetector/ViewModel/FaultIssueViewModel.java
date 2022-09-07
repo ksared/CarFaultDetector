@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.carfaultdetector.model.Fault;
+import com.example.carfaultdetector.model.Global;
 import com.example.carfaultdetector.model.RetrofitInterface;
 import com.example.carfaultdetector.model.Workshop;
 
@@ -26,7 +27,7 @@ public class FaultIssueViewModel extends ViewModel {
 
     private Retrofit retrofit;
     private  RetrofitInterface retrofitInterface;
-    private String BaseURL = "http://10.0.2.2:3000";
+    private String BaseURL = Global.url;
     private Fault[] faults;
     public MutableLiveData<Fault[]> mutableLiveDataFaults = new MutableLiveData<>();
     public MutableLiveData<Integer> mutableLiveDataAddIssue = new MutableLiveData<>();

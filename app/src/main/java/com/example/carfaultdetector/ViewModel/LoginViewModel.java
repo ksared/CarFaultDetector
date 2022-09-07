@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.carfaultdetector.model.Global;
 import com.example.carfaultdetector.model.RetrofitInterface;
 
 import com.example.carfaultdetector.model.User;
@@ -23,7 +24,7 @@ public class LoginViewModel extends ViewModel {
 
     private Retrofit retrofit;
     private RetrofitInterface retrofitInterface;
-    private String BaseURL = "http://10.0.2.2:3000";
+    private String BaseURL = Global.url;
     private static User result;
     //LiveData<String> liveData;
     HashMap<String, String> map;
